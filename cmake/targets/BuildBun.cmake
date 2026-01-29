@@ -1488,6 +1488,8 @@ if(NOT BUN_CPP_ONLY)
     register_command(
       TARGET
         ${bun}
+      TARGETS
+        ${bun}
       TARGET_PHASE
         POST_BUILD
       COMMENT
