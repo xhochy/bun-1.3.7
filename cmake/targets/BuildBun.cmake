@@ -1270,6 +1270,9 @@ if(WIN32)
   endif()
 else()
   target_link_libraries(${bun} PRIVATE
+    deflate
+    cares
+    brotli
     ${WEBKIT_LIB_PATH}/libWTF.a
     ${WEBKIT_LIB_PATH}/libJavaScriptCore.a
   )
