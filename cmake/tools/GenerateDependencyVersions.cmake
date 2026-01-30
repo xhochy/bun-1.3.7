@@ -126,6 +126,7 @@ function(generate_dependency_versions_header)
   if(NOT BUN_GIT_SHA)
     set(BUN_GIT_SHA "unknown")
   endif()
+  set(BUN_GIT_SHA "not-set-in-conda-build")
   list(APPEND DEPENDENCY_VERSIONS "UWS" "${BUN_GIT_SHA}")
   list(APPEND DEPENDENCY_VERSIONS "USOCKETS" "${BUN_GIT_SHA}")
   
