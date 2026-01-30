@@ -1226,9 +1226,6 @@ if(WIN32)
   endif()
 else()
   target_link_libraries(${bun} PRIVATE
-    deflate
-    cares
-    brotli
     ${WEBKIT_LIB_PATH}/libWTF.a
     ${WEBKIT_LIB_PATH}/libJavaScriptCore.a
   )
@@ -1263,18 +1260,22 @@ endforeach()
 list(TRANSFORM BUN_DEPENDENCIES TOLOWER OUTPUT_VARIABLE BUN_TARGETS)
 add_custom_target(dependencies DEPENDS ${BUN_TARGETS})
 
-target_link_libraries(${bun} PRIVATE brotlidec)
-target_link_libraries(${bun} PRIVATE brotlienc)
-target_link_libraries(${bun} PRIVATE brotlicommon)
-target_link_libraries(${bun} PRIVATE cares)
-target_link_libraries(${bun} PRIVATE hwy)
-target_link_libraries(${bun} PRIVATE libdeflate)
-target_link_libraries(${bun} PRIVATE ls-hpack)
-target_link_libraries(${bun} PRIVATE lolhtml)
-target_link_libraries(${bun} PRIVATE z)
-target_link_libraries(${bun} PRIVATE archive)
-target_link_libraries(${bun} PRIVATE hdr_histogram)
-target_link_libraries(${bun} PRIVATE zstd)
+target_link_libraries(${bun} PRIVATE
+  deflate
+  cares
+  brotlidec
+  brotlienc
+  brotlicommon
+  cares
+  hwy
+  deflate
+  ls-hpack
+  lolhtml
+  z
+  archive
+  hdr_histogram
+  zstd
+)
 
 if(APPLE)
   target_link_libraries(${bun} PRIVATE icucore resolv)
