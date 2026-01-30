@@ -54,7 +54,6 @@ set(BUN_DEPENDENCIES
   Cares
   Highway
   LibDeflate
-  LolHtml
   Lshpack
   Mimalloc
   Zlib
@@ -1306,6 +1305,8 @@ endforeach()
 
 list(TRANSFORM BUN_DEPENDENCIES TOLOWER OUTPUT_VARIABLE BUN_TARGETS)
 add_custom_target(dependencies DEPENDS ${BUN_TARGETS})
+
+target_link_libraries(${bun} PRIVATE lolhtml)
 
 if(APPLE)
   target_link_libraries(${bun} PRIVATE icucore resolv)
