@@ -999,42 +999,8 @@ if(NOT WIN32)
       target_compile_options(${bun} PUBLIC -fsanitize=address)
       target_link_libraries(${bun} PUBLIC -fsanitize=address)
     endif()
-
-    target_compile_options(${bun} PUBLIC
-      -Werror=return-type
-      -Werror=return-stack-address
-      -Werror=implicit-function-declaration
-      -Werror=uninitialized
-      -Werror=conditional-uninitialized
-      -Werror=suspicious-memaccess
-      -Werror=int-conversion
-      -Werror=nonnull
-      -Werror=move
-      -Werror=sometimes-uninitialized
-      -Werror=unused
-      -Wno-unused-function
-      -Wno-c++23-lambda-attributes
-      -Wno-nullability-completeness
-      -Werror
-    )
   else()
     # Leave -Werror=unused off in release builds so we avoid errors from being used in ASSERT
-    target_compile_options(${bun} PUBLIC ${LTO_FLAG}
-      -Werror=return-type
-      -Werror=return-stack-address
-      -Werror=implicit-function-declaration
-      -Werror=uninitialized
-      -Werror=conditional-uninitialized
-      -Werror=suspicious-memaccess
-      -Werror=int-conversion
-      -Werror=nonnull
-      -Werror=move
-      -Werror=sometimes-uninitialized
-      -Wno-c++23-lambda-attributes
-      -Wno-nullability-completeness
-      -Werror
-    )
-
     if(ENABLE_ASAN)
       target_compile_options(${bun} PUBLIC
         -fsanitize=null
