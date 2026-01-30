@@ -45,7 +45,6 @@ include(SetupBuildkite)
 include(SetupBun)
 include(SetupEsbuild)
 include(SetupZig)
-include(SetupRust)
 
 include(SetupCcache)
 
