@@ -50,16 +50,7 @@ set(LLVM_ZIG_CODEGEN_THREADS 0)
 
 set(BUN_DEPENDENCIES
   BoringSSL
-  Brotli
-  Cares
-  Highway
-  LibDeflate
-  Lshpack
   Mimalloc
-  Zlib
-  LibArchive # must be loaded after zlib
-  HdrHistogram # must be loaded after zlib
-  Zstd
 )
 
 # TinyCC is optional - disabled on Windows ARM64 where it's not supported
@@ -1272,7 +1263,16 @@ endforeach()
 list(TRANSFORM BUN_DEPENDENCIES TOLOWER OUTPUT_VARIABLE BUN_TARGETS)
 add_custom_target(dependencies DEPENDS ${BUN_TARGETS})
 
+target_link_libraries(${bun} PRIVATE brotli)
+target_link_libraries(${bun} PRIVATE cares)
+target_link_libraries(${bun} PRIVATE highway)
+target_link_libraries(${bun} PRIVATE libdeflate)
+target_link_libraries(${bun} PRIVATE lshpack)
 target_link_libraries(${bun} PRIVATE lolhtml)
+target_link_libraries(${bun} PRIVATE zlib)
+target_link_libraries(${bun} PRIVATE libarchive)
+target_link_libraries(${bun} PRIVATE hdrhistogram)
+target_link_libraries(${bun} PRIVATE zstd)
 
 if(APPLE)
   target_link_libraries(${bun} PRIVATE icucore resolv)
