@@ -990,8 +990,19 @@ if(NOT WIN32)
       target_compile_options(${bun} PUBLIC -fsanitize=address)
       target_link_libraries(${bun} PUBLIC -fsanitize=address)
     endif()
+
+    target_compile_options(${bun} PUBLIC
+      -Wno-unused-function
+      -Wno-c++23-lambda-attributes
+      -Wno-nullability-completeness
+    )
   else()
     # Leave -Werror=unused off in release builds so we avoid errors from being used in ASSERT
+    target_compile_options(${bun} PUBLIC ${LTO_FLAG}
+      -Wno-c++23-lambda-attributes
+      -Wno-nullability-completeness
+    )
+
     if(ENABLE_ASAN)
       target_compile_options(${bun} PUBLIC
         -fsanitize=null
